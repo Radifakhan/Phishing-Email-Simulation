@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishAware - Email Simulation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>PhishAware</h1>
+        <p>Controlled Phishing Awareness Simulation</p>
+    </header>
+
+    <section class="intro">
+        <h2>Phishing Awareness Simulation</h2>
+        <p>
+            Review the simulated email scenarios below and determine whether
+            each message should be considered suspicious.
+        </p>
+
+        <div class="notice">
+            <strong>Simulation Notice:</strong>
+            This is a controlled phishing awareness simulation.
+            No real emails are sent and no passwords or sensitive credentials
+            are collected.
+        </div>
+    </section>
+
+    <section class="scenarios">
+
+        <h2>Simulation Scenarios</h2>
+
+        {% for scenario in scenarios %}
+        <div class="scenario-card">
+
+            <div class="scenario-number">
+                Scenario {{ scenario.id }}
+            </div>
+
+            <h3>{{ scenario.subject }}</h3>
+
+            <p>
+                <strong>Sender:</strong>
+                {{ scenario.sender }}
+            </p>
+
+            <p>{{ scenario.body }}</p>
+
+            <a class="button"
+               href="{{ url_for('scenario', scenario_id=scenario.id) }}">
+                Review Email
+            </a>
+
+        </div>
+        {% endfor %}
+
+    </section>
+
+    <div class="dashboard-link">
+    <a class="button" href="{{ url_for('dashboard') }}">
+        View Awareness Dashboard
+    </a>
+</div>
+
+<footer>
+    <p>PhishAware |  Phishing Awareness Simulation</p>
+</footer>
+
+</div>
+
+</body>
+</html>

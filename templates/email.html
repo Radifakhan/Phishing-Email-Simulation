@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Review - PhishAware</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>PhishAware</h1>
+        <p>Controlled Phishing Awareness Simulation</p>
+    </header>
+
+    <div class="email-window">
+
+        <div class="email-header">
+            <h2>Simulated Email</h2>
+            <p><strong>From:</strong> {{ scenario.sender }}</p>
+            <p><strong>Subject:</strong> {{ scenario.subject }}</p>
+        </div>
+
+        <div class="email-body">
+            <p>Hello User,</p>
+
+            <p>
+                {{ scenario.body }}
+            </p>
+
+            <p>
+                Before taking any action, carefully inspect the sender,
+                wording, urgency, and context of this message.
+            </p>
+
+            <p>
+                Regards,<br>
+                Phishing Awareness Simulation
+            </p>
+        </div>
+
+    </div>
+
+    <div class="decision-box">
+
+        <h2>What is your assessment?</h2>
+
+        <p>
+            Based on the email above, select the classification you think
+            is appropriate.
+        </p>
+
+        <form method="POST"
+              action="{{ url_for('result', scenario_id=scenario.id) }}">
+
+            <button type="submit" name="answer" value="phishing"
+                    class="decision phishing">
+                ⚠️ This is Phishing
+            </button>
+
+            <button type="submit" name="answer" value="legitimate"
+                    class="decision legitimate">
+                ✓ This is Legitimate
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="simulation-note">
+        <strong>Important:</strong>
+        This simulation does not request, store, or transmit passwords,
+        authentication codes, or other sensitive credentials.
+    </div>
+
+    <a class="back-link" href="{{ url_for('index') }}">
+        ← Back to Scenarios
+    </a>
+
+</div>
+
+</body>
+</html>

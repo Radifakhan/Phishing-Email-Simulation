@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awareness Dashboard - PhishAware</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>PhishAware</h1>
+        <p>Phishing Awareness Dashboard</p>
+    </header>
+
+    <div class="dashboard-intro">
+        <h2>Awareness Assessment</h2>
+        <p>
+            This dashboard summarizes the responses recorded during the
+            controlled phishing-awareness simulation.
+        </p>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <h3>Total Attempts</h3>
+            <p>{{ total }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Correct Identifications</h3>
+            <p>{{ correct }}</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Awareness Score</h3>
+            <p>{{ score }}%</p>
+        </div>
+
+    </div>
+
+    <div class="guidance-card">
+
+        <h2>Awareness Guidance</h2>
+
+        <ul>
+            <li>Verify unexpected sender addresses.</li>
+            <li>Be cautious of urgent requests.</li>
+            <li>Inspect links before clicking them.</li>
+            <li>Avoid unexpected attachments.</li>
+            <li>Confirm unusual requests through trusted channels.</li>
+            <li>Report suspicious emails according to security policy.</li>
+        </ul>
+
+    </div>
+
+    <a class="button" href="{{ url_for('index') }}">
+        Return to Scenarios
+    </a>
+
+</div>
+
+</body>
+</html>

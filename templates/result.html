@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awareness Result - PhishAware</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>PhishAware</h1>
+        <p>Phishing Awareness Result</p>
+    </header>
+
+    <div class="result-card">
+
+        {% if correct %}
+
+        <div class="result-icon">✓</div>
+
+        <h2>Correct Assessment</h2>
+
+        <p class="result-message">
+            You correctly identified this simulated email as suspicious.
+        </p>
+
+        {% else %}
+
+        <div class="result-icon warning">!</div>
+
+        <h2>Review Required</h2>
+
+        <p class="result-message">
+            This scenario was designed to demonstrate common phishing
+            indicators. Review the warning signs below.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+    <div class="analysis-card">
+
+        <h2>Phishing Indicators</h2>
+
+        <p>
+            The following characteristics should be carefully evaluated
+            when reviewing an unexpected email:
+        </p>
+
+        <ul>
+            {% for flag in scenario.red_flags %}
+            <li>{{ flag }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="guidance-card">
+
+        <h2>How to Stay Safe</h2>
+
+        <ul>
+            <li>Verify the sender's email address.</li>
+            <li>Be cautious of urgent or threatening language.</li>
+            <li>Do not open unexpected attachments.</li>
+            <li>Do not click suspicious links.</li>
+            <li>Verify unusual requests through an official channel.</li>
+            <li>Report suspicious messages according to organizational policy.</li>
+        </ul>
+
+    </div>
+
+    <div class="result-details">
+
+        <p>
+            <strong>Your selection:</strong>
+            {{ answer|capitalize }}
+        </p>
+
+        <p>
+            <strong>Scenario:</strong>
+            {{ scenario.subject }}
+        </p>
+
+    </div>
+
+    <a class="button" href="{{ url_for('index') }}">
+        Return to Scenarios
+    </a>
+
+</div>
+
+</body>
+</html>
